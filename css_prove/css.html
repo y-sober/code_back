@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .cs-empty:empty{
+      width: 120px;
+      padding: 20px;
+      border: 4px dashed;
+    }
+    dd:empty::before{
+      content: "暂无";
+      color: blueviolet;
+    }
+  </style>
+</head>
+<body>
+<div class="cs-empty"></div>
+<dl>
+  <dt>姓名：</dt>
+  <dd>张三</dd>
+  <dt>性别：</dt>
+  <dd></dd>
+  <dt>手机：</dt>
+  <dd></dd>
+  <dt>邮箱：</dt>
+  <dd></dd>
+</dl>
+<script>
+let flag = false
+flag = Object(flag)
+console.log("-> flag", Boolean(flag))
+
+</script>
+</body>
+</html>

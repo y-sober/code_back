@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  //数据响应式
+  function defineReactive(obj,key,val){
+    //递归
+    observe(val)
+    Object.defineProperty(obj,key, {
+      get(){
+        console.log('get',key)
+        return val
+      },
+      set(newVal){
+        // console.log('set', key)
+        if(newVal !==val){
+          val = newVal
+          observe(newVal)
+          update()
+        }
+      }
+    })
+  }
+  function set(obj,key,val){
+    defineReactive(obj,key,val)
+  }
+  setInterval(()=>{
+    obj.lala = new Date().toLocaleString()
+  })
+  function update(){
+    app.innerHTML = obj.lala
+  }
+  function observe(obj){
+    if(typeof obj !== 'object' || obj === null){
+      return
+    }
+    Object.keys(obj).forEach(key => {
+      defineReactive(obj,key,obj[key])
+    })
+  }
+  observe(obj)
+</script>
+</body>
+</html>
